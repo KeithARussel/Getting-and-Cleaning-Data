@@ -39,13 +39,12 @@ the same dataset submitted with the assignment.
 
 Data Dictionary:
 ----------------
-R2$measurement is the 128 element vector measurement taken in the 9 measurement files. 
-R2$mean is the average of the measurement, summarized at measure file level. 
-R2$sd is the standard deviation of the measurement, summarized at the measure file level.
-
-R3$subject is the subject id (domain is 1-30, each corresponding to one of the 30 subjects)
-R3$activity is the activity being performed (domain is WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, 
-        SITTING, STANDING, LAYING )
-
-The 561 columns shown in R4 may be traced to the features file, which was included in the package. 
-The columns shown in R5 are inherited from R4 and R3.
+Req      |Variable  |Description
+---------|----------|------------
+R2|measurement|the 128 element vector measurement taken in the 9 measurement files. 
+R2|mean|the average of the measurement, summarized at measure file level. 
+R2|sd|the standard deviation of the measurement, summarized at the measure file level.
+R3|subject|the subject id (domain is 1-30, each corresponding to one of the 30 subjects)
+R3|activity|the activity being performed (domain is WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING )
+R4||The 561 columns shown in R4 may be traced to the features file, which was included in the package. 
+R5||The columns shown in R5 are inherited from R4 and R3.
