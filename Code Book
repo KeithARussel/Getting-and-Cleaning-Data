@@ -14,7 +14,8 @@ Requirement 2
 "Extracts only the measurements on the mean and standard deviation for each measurement."
 I've opted to meet this vague, cryptic requirement by opening each of the nine measurement files that 
 were combined in step 1. Summation is taken across the nine measurements for average (mean) and 
-standard deviation (sd). Dataset R2 is provided to meet Requirement 2.  
+standard deviation (sd) across each of the measured vectors. Dataset R2 is provided to meet 
+Requirement 2.  
 
 
 Requirement 3 
