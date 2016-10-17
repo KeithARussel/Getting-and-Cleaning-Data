@@ -39,6 +39,6 @@ In tidy data:
  * Each observation forms a row.
  * Each type of observational unit forms a table.
 Met by melting the product of R4 and R5, then assembling a table containing the mean of each of the 
-2800+ measurements for each of the thirty subjects in the test.  Which makes for one really wide
+2800+ variables for each of the thirty subjects in the test.  Which makes for one really wide
 table (combinations of the 561 variables from X and the six activites) with 30 rows. Ouch! 
 The R5 dataset is the same dataset submitted with the assignment. 
