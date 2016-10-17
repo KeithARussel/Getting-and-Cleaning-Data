@@ -1,0 +1,31 @@
+Code Book:
+
+From the Instructions:
+You should create one R script called run_analysis.R that does the following.
+
+Requirement 1 
+"Merges the training and the test sets to create one data set."
+Met by creating a sister dataset for test and train called combined. Each file in test and train are then paired together, opened, merged, and saved in the combined directory with the original file name (i.e., not containing the "_test" or "_train" suffix). These may be verified by checking the directory. 
+
+Requirement 2 
+"Extracts only the measurements on the mean and standard deviation for each measurement."
+Met by opening each of the nine measurement files that were combined in step 1. Summation is taken across the nine measurements for average (mean) and standard deviation (sd). Dataset R2 is provided to meet Requirement 2.
+
+Requirement 3 
+"Uses descriptive activity names to name the activities in the data set"
+Met by joining the activity description (walking, standing, etc. on to the y dataset. As the order of y dataset is not disturbed by this operation, subsequent joins using the resulting dataset (R3) will include the English description of the subject's activity. The R3 dataset is used downstream as part of Requirement 5.
+
+Requirement 4 
+"Appropriately labels the data set with descriptive variable names."
+Met using the colnames() function and the 561 element feature.txt file. The resulting dataset is presented as R4.
+
+Requirement 5 
+"From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject."
+From CRAN: 
+In tidy data:
+ * Each variable forms a column. (all 2800 of them!)
+ * Each observation forms a row.
+ * Each type of observational unit forms a table.
+Met by melting the product of R4 and R5, then assembling a table containing the mean of each of the 2800+ measurements for each of the thirty subjects in the test.  Which makes for one really wide table (combinations of the 561 variables from X and the six activites) 
+with 30 rows. Ouch!  Author also wishes to note that some of these variables should not be aggregated in this manner. Anyhow, here we go! 
+The R5 dataset is the same dataset submitted with the assignment. 
