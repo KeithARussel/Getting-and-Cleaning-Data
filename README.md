@@ -33,9 +33,8 @@ The R3 dataset is used downstream as part of Requirement 5.
 Requirement 4 is met using the colnames() function and the 561 element feature.txt file. The 
 resulting dataset is presented as R4. 
 
-Requirement 5 is met by melting the product of R4 and R5, then assembling a table containing the 
-mean of each of the 2800+ measurements for each of the thirty subjects in the test. R5, which is
-the same dataset submitted with the assignment. 
+Requirement 5 is met by binding R3 and R4 together, creating a tidy dataset which allows for
+eay reporting across the thirty Subjects, six Activities, and 561 named feature measurements. 
 
 Data Dictionary:
 ----------------
