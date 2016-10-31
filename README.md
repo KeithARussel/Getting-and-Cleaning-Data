@@ -34,7 +34,7 @@ Requirement 4 is met using the colnames() function and the 561 element feature.t
 resulting dataset is presented as R4. 
 
 Requirement 5 is met by binding R3 and R4 together, creating a tidy dataset which allows for
-eay reporting across the thirty Subjects, six Activities, and 561 named feature measurements. 
+eay reporting across the 30 Subjects, 6 Activities, and 561 named feature measurements. 
 
 Data Dictionary:
 ----------------
