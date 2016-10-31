@@ -1,0 +1,27 @@
+---
+title: "Code Book"
+author: "Keith Russel"
+date: "October 31, 2016"
+output: html_document
+---
+
+# To Use:
+(1) In Line 11 of the script, paste the directory where the "UCI HAR Dataset" is being kept locally.
+(2) Execute the script.
+
+# What Will Happen:
+1. Script will run, creating a set combined files, per Req. 1. These are stored in a directory structure which is parallel to the test and train directory structures.
+2. Datasets R2, R3, R4, and R5 are created.  
+
+_Requirement 5's output, R5 is the tidy dataset being graded._
+
+# Requirements Traceability Matrix
+
+Requirement|Is Met By...
+-----------|-------------------------------------------------------
+1|creating a sister dataset for test and train called combined. The combined dataset is written to a a directory which retains the file structure of its parents. On cranky old laptops with physical hard drives, this is a time intensive (~2 minutes) operation which need be done only once. Subsequent analysis is then done off the combined files.
+2|opening each of the nine measurement files that were combined in step 1. Summation is taken across the nine measurements for average (mean) and standard deviation (sd). Results are presented in Dataset R2.
+3|joining the activity description (walking, standing, etc. on to the y dataset. As the order of y dataset is not disturbed by this operation, subsequent joins using the resulting dataset (R3) will include the English description of the subject's activity. The R3 dataset is used downstream as part of Requirement 5.
+4|using the colnames() function and the 561 element feature.txt file to title a new dataset, R4.
+5|binding the results of Question 3 to the results of Question 4 by column. This tidy dataset allows on to report across, subject, the six actities, and the 561 named features. Presented as R5. 
+

@@ -25,7 +25,7 @@ library(reshape2)
 
 # Met by opening individual components of both dataset and combining. 
 #Fun dataset facts:
-  
+
 #  - Each dataset is contained in a directory. 
 #- At the main level of the directory, there are three files (subject_train, X_train, and y_train) and the "Inertial Signals" sub-directory.
 #- The "Intertial Signals" sub-directory contains 9 files.
@@ -33,7 +33,7 @@ library(reshape2)
 #So 2 datasets X (3 files + 9 files) = 24 separate open commands. Too many. 
 
 #Instead:
-  
+
 #   1. At the "same"UCI HAR Dataset"" directory level, create a sister directory to "test" and "train" called "combined" 
 #   2. Point to one of the directories and generate a list of its contents. Include the sub-directories. Call this list A.
 #   3. Point to the other directory and generate a list of its contents. Include the sub-directories. Call this list B.
@@ -75,7 +75,9 @@ rm(S1, S2, S3, A, a, B, b, f1, f2)
 
 #R2 "Extracts only the measurements on the mean and standard deviation for each measurement."
 
-#It is assumed that this is referring to the individual vector measurements.  There are nine files (body, gyro, and total) which contain the 128 element vector requested.  The other files (X, y, and subject) contain either the dimensional information or can't be aggregated. 
+# It is assumed that this is referring to the individual vector measurements.  There are nine files (body, gyro, and total) 
+# which contain the 128 element vector requested.  The other files (X, y, and subject) contain either the dimensional 
+# information or can't be aggregated. 
 
 #1. Within the combined directory, get the proper files.  All 9 of the files have a name that longer than 7 characters.
 #2. Open the file, then append both the file name and the contents to a collector dataset. 
@@ -91,10 +93,10 @@ collector <- read.table(Z[1])
 collector <- mutate(collector, measurement = basename(Z[1]))
 
 for (x in 2:length(Z)) {
-nextdata <- read.table(Z[x])
-nextdata <- mutate(nextdata, measurement =  basename(Z[x]))
-collector <- bind_rows(collector, nextdata)
-
+  nextdata <- read.table(Z[x])
+  nextdata <- mutate(nextdata, measurement =  basename(Z[x]))
+  collector <- bind_rows(collector, nextdata)
+  
 }
 
 summary <- melt(collector, varnames = 1:128)
@@ -125,19 +127,17 @@ subjectsactivity <- inner_join(activity_labels, y, by = "V1")
 subjectsactivity <- select(subjectsactivity, activity = V2)
 subjectsactivity <- bind_cols(subject, subjectsactivity)
 R3 <- subjectsactivity
-rm(subject)
 
 #R4 "Appropriately labels the data set with descriptive variable names"
 
 # Met by applying the 561 item long list "features.txt" to the column names of each of the 
-# columns in the X dataset.  To preserve the integrity of the original X dataset, a copy, X1, is used instead.
+# columns in the X dataset.  To preserve the integrity of the original X dataset, a copy, R4, is used instead.
 
-X1 <- X
-colnames(X1) <- features$V2
-R4 <- X1
+R4 <- X
+colnames(R4) <- features$V2
 
 #R5 "From the data set in step 4, creates a second, independent tidy data set with the average of 
-# each variable for each activity and each subject."
+#   each variable for each activity and each subject."
 
 #From CRAN: 
 #  In tidy data:
@@ -145,16 +145,13 @@ R4 <- X1
 #  * Each observation forms a row.
 #  * Each type of observational unit forms a table.
 
-# Which makes for one really wide table (combinations of the 561 variables from X and the six activites) 
-# with 30 rows. Ouch!  Author also wishes to note that some of these variables should not be aggregated 
-# in this manner. Anyhow, here we go! 
-subjectsactivity <- R3
+# Requirement met by binding the results of Question 3 to the results of Question 4 by column. 
+R5 <- bind_cols(R3, R4)
 
-X2 <- bind_cols(subjectsactivity, X1)
-X3 <- melt(X2, id.vars = c("subject", "activity"))
-R5 <- tbl_df(with(X3, tapply(value, list(subject, activity, variable), mean)))
+# Write the data set 
 output <- paste(root, "Tidy_Data.txt", sep = "/")
 write.table(R5, output, row.name=FALSE)
-rm(X, X2, X3)
-rm(activity_labels, features, X1, y, subjectsactivity)
 
+# Clean up the house
+rm(activity_labels, features, X, y, subjectsactivity, subject)
+unlink(combined, recursive = TRUE)
